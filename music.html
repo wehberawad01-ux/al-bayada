@@ -240,9 +240,9 @@ nav a:hover,nav a:focus-visible{color:var(--fg)}
   function say(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(say.t);say.t=setTimeout(function(){toast.classList.remove('show')},2800)}
   grid.addEventListener('click',function(e){
     var b=e.target.closest('.order');if(!b)return;
-    var text='Hi Al-Bayada, I want to order '+b.dataset.app+'.';
-    var p=navigator.clipboard&&navigator.clipboard.writeText?navigator.clipboard.writeText(text):Promise.reject();
-    p.then(function(){say('Order message copied. Paste it to us on WhatsApp.')},function(){say('Send us: "'+text+'"')});
+    var text="Hello, I'd like to ask for a "+b.dataset.app+" service.";
+    var url='https://wa.me/96171799990?text='+encodeURIComponent(text);
+    var w=window.open(url,'_blank','noopener');if(!w)location.href=url;
   });
 
   function highlight(a){
