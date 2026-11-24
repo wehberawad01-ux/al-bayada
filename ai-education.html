@@ -191,7 +191,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 (function(){
   var WA="96171799990";
   var APPS=[
-    {n:"ChatGPT Plus",s:"ChatGPT",k:"AI",c:"#10a37f",e:"💬",w:"Chat, write, code and make images",q:"Finally someone who reads your whole essay and doesn't sigh.",t:["Writing","Coding","Images"],pn:"Shared account · USD",priv:1,p:[["1 month","$7"],["3 months","$17"],["6 months","$30"],["12 months","$60"]]},
+    {n:"ChatGPT Plus",s:"ChatGPT",k:"AI",c:"#10a37f",e:"💬",w:"Chat, write, code and make images",q:"Finally someone who reads your whole essay and doesn't sigh.",t:["Writing","Coding","Images"],pn:"Shared account · USD",priv:"$15 · 1 month",p:[["1 month","$7"],["3 months","$17"],["6 months","$30"],["12 months","$60"]]},
     {n:"Gemini Pro",s:"Gemini",k:"AI",c:"#4f8df9",e:"✨",w:"Google's AI inside Gmail, Docs and Drive",q:"Ask your inbox what you forgot to reply to. It knows.",t:["Research","Writing","Images"],p:[["1 month","$8"],["6 months","$19"],["1 year","$32"]]},
     {n:"Perplexity Pro",s:"Perplexity",k:"AI",c:"#20b8cd",ink:"#032a30",e:"🔎",w:"AI search that answers with sources",q:"Like Google, but it actually reads the links for you.",t:["Research","Writing"]},
     {n:"Gamma AI",s:"Gamma",k:"AI",c:"#a21caf",e:"📊",w:"Full presentations from one sentence",q:"Type the topic. Get the slides. Take the credit.",t:["Slides","Writing"]},
@@ -240,7 +240,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
       return '<article class="card" id="'+id(a)+'" style="--c:'+a.c+';--ink:'+(a.ink||'#fff')+'">'+
         '<div class="cover"><span class="kind">'+a.k+'</span>'+(LOGOS[a.n]?'<span class="glyph logo"><img src="'+LOGOS[a.n]+'" alt="'+esc(a.s)+' logo"></span>':'<span class="glyph" aria-hidden="true">'+a.e+'</span>')+'<h3>'+esc(a.n)+'</h3></div>'+
         '<div class="body"><p class="what">'+esc(a.w)+'</p><p class="q">“'+esc(a.q)+'”</p>'+
-        (a.p?'<ul class="plist" aria-label="'+esc(a.s)+' prices">'+a.p.map(function(r){return '<li><span class="dur">'+r[0]+'</span><span class="pr">'+r[1]+'</span></li>'}).join('')+'</ul><p class="pnote">'+esc(a.pn||'Prices in USD')+'</p>'+(a.priv?'<div class="price"><span>Private account</span><b>Ask on WhatsApp</b></div>':''):'<div class="price"><span>Price</span><b>Ask on WhatsApp</b></div>')+
+        (a.p?'<ul class="plist" aria-label="'+esc(a.s)+' prices">'+a.p.map(function(r){return '<li><span class="dur">'+r[0]+'</span><span class="pr">'+r[1]+'</span></li>'}).join('')+'</ul><p class="pnote">'+esc(a.pn||'Prices in USD')+'</p>'+(a.priv?'<div class="price"><span>Private account</span><b>'+(a.priv===1?'Ask on WhatsApp':esc(String(a.priv)))+'</b></div>':''):'<div class="price"><span>Price</span><b>Ask on WhatsApp</b></div>')+
         '<div class="tags">'+a.t.map(function(t){return '<span>'+t+'</span>'}).join('')+'</div>'+
         '<a class="order" href="'+waLink(a.n)+'" target="_blank" rel="noopener">Order '+esc(a.s)+'</a></div></article>';
     }).join(''):'<p class="empty">No app matches “'+esc(qi.value)+'”.<br>Message us, we probably have it anyway.</p>';
