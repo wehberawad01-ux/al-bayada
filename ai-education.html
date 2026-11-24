@@ -225,7 +225,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   function esc(s){return String(s).replace(/[&<>"]/g,function(m){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]})}
   function id(a){return 'app-'+a.n.replace(/\W+/g,'')}
   function find(n){return APPS.filter(function(a){return a.n===n})[0]}
-  function waLink(name){return 'https://wa.me/'+WA+'?text='+encodeURIComponent('Hi Al-Bayada, I want to order '+name+'.')}
+  function waLink(name){var art=/^[AEIOU]/i.test(name)?'an':'a';return 'https://wa.me/'+WA+'?text='+encodeURIComponent("Hello, I'd like to ask for "+art+' '+name+' service.')}
 
   FILTERS.forEach(function(f){
     var b=document.createElement('button');b.type='button';b.className='chip';b.id='chip-'+f;b.textContent=f;b.setAttribute('aria-pressed',f==="All");
