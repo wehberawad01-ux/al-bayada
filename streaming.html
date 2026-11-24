@@ -327,7 +327,9 @@ nav a:hover,nav a:focus-visible{color:var(--fg)}
   ['playing','canplay','loadeddata'].forEach(function(ev){vid.addEventListener(ev,function(){if(scr.classList.contains('vid')){vid.classList.add('on');if(vid.paused){try{var q=vid.play();if(q&&q.catch)q.catch(function(){})}catch(e){}}}})});
   
   function pre(k){var ks=Object.keys(VIDS);if(k>=ks.length)return;getV(VIDS[ks[k]]).then(function(){pre(k+1)})}
-  (function(){var ks=Object.keys(VIDS);function go(k){if(k>=ks.length)return;getV(VIDS[ks[k]]).then(function(){go(k+1)})}go(0)})();
+  /* Data-friendly loading: only the channel on screen plus the next one are downloaded; each clip is kept after that. Skipped entirely when the phone has Data Saver on. */
+  var SAVE=!!(navigator.connection&&navigator.connection.saveData);
+  function preNext(){if(SAVE)return;try{var n=APPS[i%APPS.length],f=n&&VIDS[n.n];if(f)setTimeout(function(){getV(f)},1500)}catch(e){}}
   var name=document.getElementById('tvName'),line=document.getElementById('tvLine'),scr=document.getElementById('tvScreen'),bar=document.getElementById('tvBar'),i=0,D=11000;
   function tv(){
     var a=APPS[i%APPS.length];i++;
@@ -338,6 +340,7 @@ nav a:hover,nav a:focus-visible{color:var(--fg)}
       var u=BLU[vf]||vf;if(vid.getAttribute('data-f')!==vf){vid.setAttribute('data-f',vf);vid.src=u}
       try{vid.currentTime=0;var pp=vid.play();if(pp&&pp.catch)pp.catch(function(){})}catch(e){}
       scr.classList.add('vid');
+      preNext();
       scr.style.background='linear-gradient(rgba(5,5,10,0) 55%,rgba(5,5,10,.6))';
     }
     else{vtok++;vid.classList.remove('on');scr.classList.remove('vid');try{vid.pause()}catch(e){}
