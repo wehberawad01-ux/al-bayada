@@ -185,7 +185,7 @@ nav a:hover,nav a:focus-visible{color:var(--fg)}
     <span class="tv-led" aria-hidden="true"></span>
   </div>
   <div class="remote" role="group" aria-label="TV remote">
-    <button type="button" class="pwr" id="tvPower" aria-pressed="true" aria-label="Turn TV off">⏻</button>
+    <button type="button" class="pwr" id="tvPower" aria-pressed="true" aria-label="Turn TV off"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 3v8"/><path d="M6.4 6.6a8 8 0 1 0 11.2 0"/></svg></button>
     <span>Remote</span>
     <button type="button" id="tvPrev" aria-label="Previous channel">◀</button>
     <button type="button" id="tvNext" aria-label="Next channel">▶</button>
@@ -354,7 +354,7 @@ nav a:hover,nav a:focus-visible{color:var(--fg)}
   pwr.onclick=function(){
     tvOn=!tvOn;pwr.setAttribute('aria-pressed',tvOn);pwr.setAttribute('aria-label',tvOn?'Turn TV off':'Turn TV on');
     if(tvOn){tvEl.classList.remove('off');tvEl.classList.add('on-anim');setTimeout(function(){tvEl.classList.remove('on-anim')},520);i=Math.max(0,i-1);tv();say(rnd(ON_LINES))}
-    else{clearTimeout(tvT);try{vid.pause()}catch(e){}document.getElementById('tvZzzLine').textContent=rnd(OFF_LINES);tvEl.classList.add('off');say('TV off. Press ⏻ when you miss it.')}
+    else{clearTimeout(tvT);try{vid.pause()}catch(e){}document.getElementById('tvZzzLine').textContent=rnd(OFF_LINES);tvEl.classList.add('off');say('TV off. Press the power button when you miss it.')}
   };
   function chan(step){if(!tvOn){say('Turn the TV on first 😄');return}i=(i-1+step+APPS.length*2)%APPS.length;tv()}
   document.getElementById('tvNext').onclick=function(){chan(1)};
